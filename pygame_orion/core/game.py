@@ -1,28 +1,86 @@
 from __future__ import annotations
-from typing import Dict, List, Optional, Any, Tuple
+
+from pygame.time import Clock
 
 import pygame_orion.core.events as events
 
 from pygame_orion.core.config import OrionConfig
 from pygame_orion.core.display import Display
 from pygame_orion.core.events import EventEmitter
-from pygame_orion.core.time_step import TimeStep
 from pygame_orion.renderer.renderer import Renderer
 from pygame_orion.scenes.scene_manager import SceneManager
+from pygame_orion.ecs.ecs_manager import ECSManager
+from pygame_orion.input.input_manager import InputManager
+
+from pygame_orion._prepare import CONFIG
 
 
-class Config:
+class MainLoop:
 
-    def __init__(self, config: Dict[str, Any]):
-        self.fps: int = config["fps"]
-        self.command_keys: Dict[int, str] = config["command_keys"]
-        self.move_keys: Dict[int, Tuple[int, int]] = config["move_keys"]
+    def __init__(self, game: Game) -> None:
+        self.game = game
+        self.clock = Clock()
+        self.callback = None
+        self.runtime = 0
+        self.frame = 0
+        self.ticks = 0
+
+        self._started = False
+        self._is_running = False
+        self._start_time = 0
+        self._last_time = 0
+        self._now = 0
+
+    def run(self, stop_at: int = 0):
+        while self._is_running:
+            self.step()
+            if stop_at > 0:
+                if stop_at > self.ticks:
+                    self.ticks += 1
+                else:
+                    print(f"Stopping at tick {stop_at}")
+                    print(f"Total runtime: {self.runtime}")
+                    print(f"Total frames: {self.frame}")
+                    self.stop()
+
+    def start(self, callback):
+        if self._started:
+            return
+        self.callback = callback
+        self._started = True
+        self._is_running = True
+        self._start_time = self.clock.get_time()
+        self.run(10)
+
+    def step(self):
+        time = self.clock.get_time()
+        self._now = time
+        before = time - self._last_time
+        dt = before
+        self.runtime += dt
+        self.callback(time, dt)
+        self.clock.tick()
+        self._last_time = time
+        self.frame += 1
+
+    def stop(self):
+        self._is_running = False
+        self._started = False
+        return self
+
+    def teardown(self):
+        self.stop()
+        self.callback = None
+        self.game = None
+
+    def tick(self):
+        self.step()
 
 
 class Game:
 
-    def __init__(self, config_path: str) -> None:
-        self.config: OrionConfig = OrionConfig(config_path)
+    def __init__(self) -> None:
+        self.config: OrionConfig = CONFIG
         self.renderer: Renderer = Renderer(self)
         self.display: Display = Display(self)
 
@@ -30,26 +88,27 @@ class Game:
         self._is_running = False
 
         self.events = EventEmitter(self)
-        self.cache = None  # TODO CacheManager(self)
-        self.registry = None  # TODO DataManager(self)
-        self.input = None  # TODO InputManager(self, self.config)
+        self.input = InputManager(self, self.config.command_keys, self.config.move_keys)
+        self.ecs = ECSManager(self)
         self.scene = SceneManager(self)
-        self.loop = TimeStep(self, self.config.fps)
+        self.loop = MainLoop(self)
 
         self._pending_teardown = False
         self._remove_display = False
 
-        self.boot()
-
     def boot(self):
-        pass
+        self._is_booted = True
+        self.events.emit(events.BOOT)
+        self.preload()
 
     def preload(self):
-        # emit Events.READY
+        self.events.emit(events.READY)
         self.start()
 
     def start(self):
-        pass
+        self._is_running = True
+        if self.renderer:
+            self.loop.start(self.step)
 
     def step(self, time: float, delta: float):
         if self._pending_teardown:
@@ -64,7 +123,7 @@ class Game:
         emitter.emit(events.STEP, time, delta)
 
         # Update the SceneManager and all active Scenes
-        this.scene.update(time, delta)
+        self.scene.update(time, delta)
 
         # Final event before rendering starts
         emitter.emit(events.POST_STEP)
@@ -83,13 +142,3 @@ class Game:
 
         # The final event before the step repeats. Last chance to do anything to the display.
         emitter.emit(events.POST_RENDER, renderer, time, delta)
-
-    def get_frame(self):
-        pass
-
-    def get_time(self):
-        pass
-
-    def teardown(self):
-        pass
-

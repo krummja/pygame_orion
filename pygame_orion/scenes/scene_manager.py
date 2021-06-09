@@ -27,7 +27,7 @@ class SceneManager:
         pass
 
     def update(self, time: float, delta: float):
-        pass
+        print(f"update at {time} ({delta})")
 
     def render(self, renderer):
-        pass
+        renderer.render()

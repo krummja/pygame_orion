@@ -12,7 +12,10 @@ if TYPE_CHECKING:
 
 class OrionConfig:
 
-    def __init__(self, config_path: Optional[str] = None) -> None:
+    def __init__(
+            self,
+            config_path: Optional[str] = None
+        ) -> None:
         cfg = generate_default_config()
         self.cfg = cfg
 
@@ -20,6 +23,8 @@ class OrionConfig:
             temp = configparser.ConfigParser()
             temp.read(config_path)
             populate_config(cfg, temp._sections)
+
+        pygame.init()
 
         # [display]
         fullscreen = cfg.getboolean("display", "fullscreen")
@@ -31,17 +36,42 @@ class OrionConfig:
             self.display_size = info.current_w, info.current_h
         else:
             self.display_size = display_width, display_height
-
         self.screen_mode = (0, pygame.FULLSCREEN)[fullscreen]
-        self.fps = cfg.getint("display", "fps")
+        pygame.display.set_mode(
+            self.display_size,
+            self.screen_mode
+        )
 
-        # [input]
-        self.command_keys = cfg.get("input", "command_keys")
-        self.move_keys = cfg.get("input", "move_keys")
+        self.fps = cfg.getint("display", "fps")
+        self.min_fps = cfg.getint("display", "min_fps")
 
 
 def get_defaults() -> OrderedDict[str, Any]:
-    return OrderedDict()
+    return OrderedDict(
+        (
+            (
+                "display",
+                OrderedDict(
+                    (
+                        ("fullscreen", True),
+                        ("width", 1440),
+                        ("height", 1080),
+                        ("fps", 60),
+                        ("min_fps", 30),
+                    )
+                )
+            ),
+            (
+                "input",
+                OrderedDict(
+                    (
+                        ("command_keys", {}),
+                        ("move_keys", {}),
+                    )
+                )
+            )
+        )
+    )
 
 
 def generate_default_config() -> ConfigParser:

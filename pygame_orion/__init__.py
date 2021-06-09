@@ -1,3 +1,5 @@
-import pygame
+from pygame_orion.core.game import Game
 
-pygame.init()
+__all__ = [
+    "Game"
+]

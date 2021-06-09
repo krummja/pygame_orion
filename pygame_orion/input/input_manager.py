@@ -1,22 +1,8 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING, TypeVar, Optional, Tuple, Dict
+from typing import TYPE_CHECKING, TypeVar, Optional, Tuple, Dict, Generic
 import pygame as pg
 
-# Key inputs
-from pygame import (
-    K_RETURN,
-    K_ESCAPE,
-)
-
-# Input events
-from pygame import (
-    KEYDOWN,
-    QUIT,
-    MOUSEMOTION,
-    MOUSEBUTTONDOWN,
-    MOUSEBUTTONUP,
-    USEREVENT,
-)
+from pygame_orion._constants import *
 
 if TYPE_CHECKING:
     from pygame_orion.core.game import Game
@@ -90,17 +76,22 @@ class InputManager(Generic[T], InputDispatch[T]):
     }
     _move_keys: Dict[int, Tuple[int, int]] = {}
 
-    def __init__(self, game: Game, command_keys, move_keys) -> None:
+    def __init__(
+            self,
+            game: Game,
+            command_keys: Optional[Dict[int, str]] = None,
+            move_keys: Optional[Dict[int, Tuple[int, int]]] = None
+        ) -> None:
         self.game = game
         self.pointer_data = PointerData()
-
         self.display = None
-
-        self._command_keys.update(command_keys)
-        self._move_keys.update(move_keys)
+        self.command_keys = command_keys or {}
+        self.move_keys = move_keys or {}
 
     def boot(self):
         self.display = self.game.display
+        self._command_keys.update(self.command_keys)
+        self._move_keys.update(self.move_keys)
 
     def update(self, _time: float, _delta: float) -> Optional[T]:
         for event in pg.event.get():
