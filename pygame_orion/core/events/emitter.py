@@ -25,8 +25,7 @@ class ListenerWrapper:
 
 class EventEmitter:
 
-    def __init__(self, game: Game) -> None:
-        self.game = game
+    def __init__(self) -> None:
         self._events = {}
 
     def on(self, event, listener):

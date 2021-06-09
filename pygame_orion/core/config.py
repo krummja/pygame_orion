@@ -45,6 +45,14 @@ class OrionConfig:
         self.fps = cfg.getint("display", "fps")
         self.min_fps = cfg.getint("display", "min_fps")
 
+        self.debug = cfg.getboolean("game", "debug")
+        self.ecs_plugin = cfg.getboolean("game", "ecs")
+
+        loggers = cfg.get("logging", "loggers")
+        self.loggers = loggers.replace(" ", "").split(",")
+        self.debug_logging = cfg.getboolean("logging", "debug_logging")
+        self.debug_level = cfg.get("logging", "debug_level")
+
 
 def get_defaults() -> OrderedDict[str, Any]:
     return OrderedDict(
@@ -62,13 +70,16 @@ def get_defaults() -> OrderedDict[str, Any]:
                 )
             ),
             (
-                "input",
-                OrderedDict(
-                    (
-                        ("command_keys", {}),
-                        ("move_keys", {}),
-                    )
-                )
+                "gui",
+                OrderedDict(())
+            ),
+            (
+                "game",
+                OrderedDict((("debug", False), ("ecs", True)))
+            ),
+            (
+                "logging",
+                OrderedDict((("loggers", "all"), ("debug_logging", True), ("debug_level", "info")))
             )
         )
     )

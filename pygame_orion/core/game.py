@@ -1,8 +1,10 @@
 from __future__ import annotations
+import logging
 
 from pygame.time import Clock
 
 import pygame_orion.core.events as events
+import pygame_orion._logging as log
 
 from pygame_orion.core.config import OrionConfig
 from pygame_orion.core.display import Display
@@ -11,13 +13,14 @@ from pygame_orion.renderer.renderer import Renderer
 from pygame_orion.scenes.scene_manager import SceneManager
 from pygame_orion.ecs.ecs_manager import ECSManager
 from pygame_orion.input.input_manager import InputManager
-
 from pygame_orion._prepare import CONFIG
 
 
 class MainLoop:
 
     def __init__(self, game: Game) -> None:
+        log.configure()
+
         self.game = game
         self.clock = Clock()
         self.callback = None
@@ -31,17 +34,12 @@ class MainLoop:
         self._last_time = 0
         self._now = 0
 
-    def run(self, stop_at: int = 0):
+    def run(self, stop):
         while self._is_running:
             self.step()
-            if stop_at > 0:
-                if stop_at > self.ticks:
-                    self.ticks += 1
-                else:
-                    print(f"Stopping at tick {stop_at}")
-                    print(f"Total runtime: {self.runtime}")
-                    print(f"Total frames: {self.frame}")
-                    self.stop()
+
+            if self.ticks >= stop:
+                self.stop()
 
     def start(self, callback):
         if self._started:
@@ -61,6 +59,7 @@ class MainLoop:
         self.callback(time, dt)
         self.clock.tick()
         self._last_time = time
+        self.ticks += 1
         self.frame += 1
 
     def stop(self):
@@ -81,36 +80,37 @@ class Game:
 
     def __init__(self) -> None:
         self.config: OrionConfig = CONFIG
+
+        self.events = EventEmitter()
         self.renderer: Renderer = Renderer(self)
         self.display: Display = Display(self)
 
+        self.input: InputManager = InputManager(self)
+        self.ecs: ECSManager = ECSManager(self)
+        self.scene: SceneManager = SceneManager(self)
+
+        self.loop: MainLoop = MainLoop(self)
+
         self._is_booted = False
         self._is_running = False
-
-        self.events = EventEmitter(self)
-        self.input = InputManager(self, self.config.command_keys, self.config.move_keys)
-        self.ecs = ECSManager(self)
-        self.scene = SceneManager(self)
-        self.loop = MainLoop(self)
-
         self._pending_teardown = False
         self._remove_display = False
 
-    def boot(self):
+    def boot(self) -> None:
         self._is_booted = True
         self.events.emit(events.BOOT)
-        self.preload()
+        self.ready()
 
-    def preload(self):
+    def ready(self) -> None:
         self.events.emit(events.READY)
         self.start()
 
-    def start(self):
+    def start(self) -> None:
         self._is_running = True
         if self.renderer:
             self.loop.start(self.step)
 
-    def step(self, time: float, delta: float):
+    def step(self, time: float, delta: float) -> None:
         if self._pending_teardown:
             return self.teardown()
 
@@ -142,3 +142,6 @@ class Game:
 
         # The final event before the step repeats. Last chance to do anything to the display.
         emitter.emit(events.POST_RENDER, renderer, time, delta)
+
+    def teardown(self) -> None:
+        pass

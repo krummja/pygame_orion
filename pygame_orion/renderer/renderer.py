@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from pygame_orion.core.game import Game
+    from pygame_orion.scenes.scene import Scene
 
 
 class Renderer:
@@ -11,10 +12,13 @@ class Renderer:
         self.game = game
 
     def pre_render(self):
-        print("pre_render")
+        pass
 
     def render(self):
-        print("render")
+        pass
+
+    def render_scene(self, scene) -> None:
+        pass
 
     def post_render(self):
-        print("post_render")
+        pass

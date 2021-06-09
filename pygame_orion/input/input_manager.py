@@ -12,6 +12,7 @@ T = TypeVar("T")
 
 
 def get() -> Iterator[Any]:
+    """A simple alias for pygame.event.get()."""
     return pg.event.get()
 
 
@@ -83,8 +84,9 @@ class InputManager(Generic[T], InputDispatch[T]):
             move_keys: Optional[Dict[int, Tuple[int, int]]] = None
         ) -> None:
         self.game = game
-        self.pointer_data = PointerData()
         self.display = None
+
+        self.pointer_data = PointerData()
         self.command_keys = command_keys or {}
         self.move_keys = move_keys or {}
 
@@ -116,16 +118,16 @@ class InputManager(Generic[T], InputDispatch[T]):
         return None
 
     def ev_mousemotion(self, event: MOUSEMOTION) -> Optional[T]:
-        self.client.ui.pointer_data.x = event.pos[0]
-        self.client.ui.pointer_data.y = event.pos[1]
+        self.pointer_data.x = event.pos[0]
+        self.pointer_data.y = event.pos[1]
         return None
 
     def ev_mousebuttondown(self, event: MOUSEBUTTONDOWN) -> Optional[T]:
         if event:
-            self.client.ui.pointer_data.click = True
+            self.pointer_data.click = True
         return False
 
     def ev_mousebuttonup(self, event: MOUSEBUTTONUP) -> Optional[T]:
         if event:
-            self.client.ui.pointer_data.click = False
+            self.pointer_data.click = False
         return False
