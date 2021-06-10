@@ -1,4 +1,4 @@
-# Pygame Orion
+![](orion.svg)
 
 ## Requirements
 

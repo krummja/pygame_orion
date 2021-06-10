@@ -40,11 +40,8 @@ class Renderer:
     def pre_render(self):
         pass
 
-    def render(self):
+    def render(self, scene: Scene) -> None:
         pass
-
-    def render_scene(self, scene: Scene) -> None:
-        print(f"Rendering scene {scene.sys.settings.key}!")
 
     def post_render(self):
         pass

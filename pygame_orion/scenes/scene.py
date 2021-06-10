@@ -37,7 +37,7 @@ class SceneSystems:
         self.events = EventEmitter()
 
     def render(self, renderer: Renderer) -> None:
-        renderer.render_scene(self.scene)
+        renderer.render(self.scene)
 
 
 class Scene:

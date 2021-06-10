@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="pygame_orion",
-    version="0.0.1",
+    version="0.1.0",
     description="A game design framework for Pygame 2",
     long_description="Orion is a design framework built atop Pygame 2. "
                      "It is an opinionated selection of development tools"
@@ -14,7 +14,14 @@ setup(
     author_email="crumja4@gmail.com",
     license="MIT",
     packages=[
-
+        "pygame_orion",
+        "pygame_orion.core",
+        "pygame_orion.data",
+        "pygame_orion.ecs",
+        "pygame_orion.gui",
+        "pygame_orion.input",
+        "pygame_orion.renderer",
+        "pygame_orion.scenes",
     ],
     zip_safe=False,
     python_requires=">=3.8.5",

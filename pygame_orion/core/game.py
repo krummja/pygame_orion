@@ -108,6 +108,9 @@ class MainLoop:
 class Game:
 
     def __init__(self) -> None:
+        """The core client object that contains all of the engine modules
+        useful for building games.
+        """
         self.config: OrionConfig = CONFIG
 
         self.events = EventEmitter()
