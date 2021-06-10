@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Optional, Dict, Any
 import logging
 
 from pygame.time import Clock
@@ -13,7 +14,6 @@ from pygame_orion.renderer.renderer import Renderer
 from pygame_orion.scenes.scene_manager import SceneManager
 from pygame_orion.ecs.ecs_manager import ECSManager
 from pygame_orion.input.input_manager import InputManager, InputHandler
-from pygame_orion._prepare import CONFIG
 
 
 logger = logging.getLogger(__file__)
@@ -46,7 +46,7 @@ class BootManager:
 class MainLoop:
 
     def __init__(self, game: Game) -> None:
-        log.configure()
+        log.configure(game.config)
 
         self.game = game
         self.clock = Clock()
@@ -104,19 +104,35 @@ class MainLoop:
 
 class Game:
 
-    def __init__(self) -> None:
+    def __init__(
+            self,
+            framework_config: Optional[Dict[str, Any]] = None,
+            config_path: Optional[str] = None,
+        ) -> None:
         """The core client object that contains all of the engine modules
         useful for building games.
         """
-        self.config: OrionConfig = CONFIG
+        self.config: OrionConfig = OrionConfig(framework_config, config_path)
 
         self.events = EventEmitter()
-        self.renderer: Renderer = Renderer(self)
+
+        if self.config.renderer:
+            self.renderer: Renderer = Renderer(self)
+        else:
+            self.renderer = None
+
         self.display: Display = Display(self)
 
-        self.input: InputManager = InputManager(self)
-        self.ecs: ECSManager = ECSManager(self)
-        self.scene: SceneManager = SceneManager(self)
+        if self.config.input:
+            self.input: InputManager = InputManager(self)
+
+        if self.config.ecs:
+            self.ecs: ECSManager = ECSManager(self)
+
+        if self.config.scenes:
+            self.scene: SceneManager = SceneManager(self)
+        else:
+            self.scene = None
 
         self.loop: MainLoop = MainLoop(self)
 
@@ -134,7 +150,12 @@ class Game:
         self.events.emit(BOOT)
 
     def ready(self) -> None:
-        self.events.emit(READY)
+        if not self.renderer:
+            raise RuntimeWarning("Missing Renderer! Aborting.")
+        elif not self.scene:
+            raise RuntimeWarning("Missing Scene Manager! Aborting.")
+        else:
+            self.events.emit(READY)
 
     def start(self) -> None:
         logger.info("All core modules report READY status.")

@@ -3,7 +3,7 @@ import sys
 from pygame_orion import _prepare as prepare
 
 
-def configure() -> None:
+def configure(config) -> None:
     """Configure logging based on the settings in the config file."""
 
     LOG_LEVELS = {
@@ -13,7 +13,6 @@ def configure() -> None:
         "error": logging.ERROR,
         "critical": logging.CRITICAL
     }
-    config = prepare.CONFIG
     loggers = {}
 
     if config.debug_level in LOG_LEVELS:
