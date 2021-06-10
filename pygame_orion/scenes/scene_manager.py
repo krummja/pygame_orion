@@ -24,6 +24,12 @@ class SceneHandler:
         self._scenes = []
         self.count = len(self._scenes)
 
+    @property
+    def active_scene(self):
+        """Gets the topmost scene with an active flag."""
+        active_scenes = [scene for scene in filter((lambda s: s.sys.settings.active), self._scenes)]
+        return active_scenes[-1]
+
     def push_scene(self, scene: Scene) -> None:
         self._scenes.append(scene)
         if scene.sys.settings.key not in self._keys.keys():
@@ -145,6 +151,10 @@ class SceneManager:
 
         self.game.events.on(BOOT, self._boot)
         self.game.events.on(READY, self._ready)
+
+    @property
+    def input(self):
+        return self.handler.active_scene.sys.input
 
     def boot(self):
         """Can be overridden to provide on-boot functionality."""

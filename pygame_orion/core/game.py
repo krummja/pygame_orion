@@ -12,7 +12,7 @@ from pygame_orion.core.emitter import EventEmitter
 from pygame_orion.renderer.renderer import Renderer
 from pygame_orion.scenes.scene_manager import SceneManager
 from pygame_orion.ecs.ecs_manager import ECSManager
-from pygame_orion.input.input_manager import InputManager
+from pygame_orion.input.input_manager import InputManager, InputHandler
 from pygame_orion._prepare import CONFIG
 
 
@@ -61,12 +61,9 @@ class MainLoop:
         self._last_time = 0
         self._now = 0
 
-    def run(self, stop):
+    def run(self):
         while self._is_running:
             self.step()
-
-            if self.ticks >= stop:
-                self.stop()
 
     def start(self, callback):
         if self._started:
@@ -75,7 +72,7 @@ class MainLoop:
         self._started = True
         self._is_running = True
         self._start_time = self.clock.get_time()
-        self.run(10)
+        self.run()
 
     def step(self):
         time = self.clock.get_time()
@@ -130,6 +127,8 @@ class Game:
 
         self.boot_manager = BootManager(self)
 
+        self.events.on(STOP, self.stop)
+
     def boot(self) -> None:
         self._is_booted = True
         self.events.emit(BOOT)
@@ -176,6 +175,10 @@ class Game:
 
         # The final event before the step repeats. Last chance to do anything to the display.
         emitter.emit(POST_RENDER, renderer, time, delta)
+
+    def stop(self):
+        self._is_running = False
+        self.loop._is_running = False
 
     def teardown(self) -> None:
         pass

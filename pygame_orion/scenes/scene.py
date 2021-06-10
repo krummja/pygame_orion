@@ -5,6 +5,7 @@ from collections import OrderedDict
 from pygame_orion._events import *
 from pygame_orion.core.emitter import EventEmitter
 from pygame_orion.scenes import constants as CONST
+from pygame_orion.input.input_manager import InputHandler
 
 if TYPE_CHECKING:
     from pygame_orion.renderer.renderer import Renderer
@@ -26,7 +27,11 @@ class SceneConfig:
         self.physics = config.get("physics", {})
         self.loader = config.get("loader", {})
         self.plugins = config.get("plugins", False)
-        self.input = config.get("input", {})
+        self.input = config.get("input", {
+            "handler": InputHandler(self.scene),
+            "command_keys": {},
+            "move_keys": {},
+        })
 
 
 class SceneSystems:
@@ -35,6 +40,15 @@ class SceneSystems:
         self.scene = scene
         self.settings = settings
         self.events = EventEmitter()
+        self.input = self.settings.input["handler"]
+
+    @property
+    def game(self):
+        return self.scene.manager.game
+
+    @property
+    def game_events(self):
+        return self.game.events
 
     def render(self, renderer: Renderer) -> None:
         renderer.render(self.scene)

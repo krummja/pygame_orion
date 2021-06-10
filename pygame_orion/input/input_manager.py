@@ -10,6 +10,7 @@ from pygame_orion._events import *
 from pygame_orion.core.emitter import EventEmitter
 
 if TYPE_CHECKING:
+    from pygame_orion.scenes.scene import Scene
     from pygame_orion.core.game import Game
 
 logger = logging.getLogger(__file__)
@@ -84,23 +85,17 @@ class InputManager(Generic[T], InputDispatch[T]):
     }
     _move_keys: Dict[int, Tuple[int, int]] = {}
 
-    def __init__(
-            self,
-            game: Game,
-            command_keys: Optional[Dict[int, str]] = None,
-            move_keys: Optional[Dict[int, Tuple[int, int]]] = None
-        ) -> None:
+    def __init__(self, game: Game) -> None:
         self.game = game
         self.display = None
 
         self.pointer_data = PointerData()
-        self.command_keys = command_keys or {}
-        self.move_keys = move_keys or {}
 
         self.events = EventEmitter()
 
         self.game.events.on(BOOT, self._boot)
         self.game.events.on(READY, self._ready)
+        self.game.events.on(PRE_STEP, self.handle_input)
 
     def boot(self):
         pass
@@ -111,23 +106,23 @@ class InputManager(Generic[T], InputDispatch[T]):
     def _boot(self):
         logger.info("BOOT: InputManager")
         self.display = self.game.display
-        self._command_keys.update(self.command_keys)
-        self._move_keys.update(self.move_keys)
 
         self.boot()
         self.events.emit(BOOT, "Input")
 
     def _ready(self):
         logger.info("READY: InputManager")
+
+        input_scene = self.game.scene.handler.active_scene
+        self._command_keys.update(input_scene.sys.settings.input.get("command_keys", {}))
+        self._move_keys.update(input_scene.sys.settings.input.get("move_keys", {}))
+
         self.ready()
         self.events.emit(READY)
 
-    def update(self, _time: float, _delta: float) -> Optional[T]:
+    def handle_input(self, _time: float, _delta: float) -> Optional[T]:
         for event in pg.event.get():
-            try:
-                value: T = self.dispatch(event)
-            except StateBreak:
-                return None
+            value: T = self.dispatch(event)
             if value is not None:
                 return value
 
@@ -137,11 +132,13 @@ class InputManager(Generic[T], InputDispatch[T]):
     def ev_keydown(self, event: KEYDOWN) -> Optional[T]:
         func: Callable[[], Optional[T]]
         key = event.__dict__['key']
+        handler = self.game.scene.input
+
         if key in self._command_keys:
-            func = getattr(self, f"cmd_{self._command_keys[key]}")
+            func = getattr(handler, f"cmd_{self._command_keys[key]}")
             return func()
         elif key in self._move_keys:
-            return self.cmd_move(*self._move_keys[key])
+            return handler.cmd_move(*self._move_keys[key])
         return None
 
     def ev_mousemotion(self, event: MOUSEMOTION) -> Optional[T]:
@@ -158,3 +155,18 @@ class InputManager(Generic[T], InputDispatch[T]):
         if event:
             self.pointer_data.click = False
         return False
+
+
+class InputHandler:
+
+    def __init__(self, scene: Scene) -> None:
+        self.scene = scene
+
+    def cmd_move(self, x: int, y: int) -> None:
+        pass
+
+    def cmd_confirm(self) -> None:
+        pass
+
+    def cmd_escape(self) -> None:
+        pass
