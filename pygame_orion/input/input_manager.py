@@ -1,11 +1,18 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING, TypeVar, Optional, Tuple, Dict, Generic
+import logging
+
+from pygame.locals import *
 import pygame as pg
 
 from pygame_orion._constants import *
+from pygame_orion._events import *
+from pygame_orion.core.emitter import EventEmitter
 
 if TYPE_CHECKING:
     from pygame_orion.core.game import Game
+
+logger = logging.getLogger(__file__)
 
 
 T = TypeVar("T")
@@ -90,10 +97,30 @@ class InputManager(Generic[T], InputDispatch[T]):
         self.command_keys = command_keys or {}
         self.move_keys = move_keys or {}
 
+        self.events = EventEmitter()
+
+        self.game.events.on(BOOT, self._boot)
+        self.game.events.on(READY, self._ready)
+
     def boot(self):
+        pass
+
+    def ready(self):
+        pass
+
+    def _boot(self):
+        logger.info("BOOT: InputManager")
         self.display = self.game.display
         self._command_keys.update(self.command_keys)
         self._move_keys.update(self.move_keys)
+
+        self.boot()
+        self.events.emit(BOOT, "Input")
+
+    def _ready(self):
+        logger.info("READY: InputManager")
+        self.ready()
+        self.events.emit(READY)
 
     def update(self, _time: float, _delta: float) -> Optional[T]:
         for event in pg.event.get():

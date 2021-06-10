@@ -1,14 +1,14 @@
 from __future__ import annotations
-from typing import List, TYPE_CHECKING, Union, Optional
+from typing import List, TYPE_CHECKING, Union, Optional, Dict, Any, Callable
 from collections import deque
 import logging
 
-from pygame_orion.core import events
 from pygame_orion.scenes import constants as CONST
-from pygame_orion.core.events import EventEmitter
+from pygame_orion._events import *
+from pygame_orion.core.emitter import EventEmitter
 
 if TYPE_CHECKING:
-    from pygame_orion.scenes.scene import Scene, SceneSettings, SceneSystems
+    from pygame_orion.scenes.scene import Scene, SceneConfig, SceneSystems
     from pygame_orion.core.game import Game
     from pygame_orion.renderer.renderer import Renderer
 
@@ -29,6 +29,7 @@ class SceneHandler:
         if scene.sys.settings.key not in self._keys.keys():
             self._keys[scene.sys.settings.key] = scene
         scene.manager = self._manager
+        scene.manager.processor.add_to_pending(scene)
 
     def pop_scene(self, idx: Optional[int] = None, delete_key: bool = True) -> Scene:
         if idx is not None:
@@ -65,25 +66,54 @@ class SceneProcessor:
 
     def __init__(self, manager: SceneManager) -> None:
         self._manager = manager
-        self._pending = []
-        self._start = []
+        self._pending = deque([])
+        self._start = deque([])
         self._queue = deque([])
         self._is_processing: bool = False
 
+    def add_to_pending(self, scene: Scene) -> None:
+        self._pending.append(scene)
+
+    def process_pending(self):
+        if not self._pending:
+            return
+        scene = self._pending.popleft()
+        sys = scene.sys
+        sys.settings.status = CONST.INIT
+
+        if hasattr(scene, "start"):
+            self.start(scene)
+        if hasattr(scene, "preload"):
+            self.preload(scene)
+        if hasattr(scene, "create"):
+            self.create(scene)
+
+        sys.settings.status = CONST.RUNNING
+        self._add_to_queue(scene)
+
+    # Scene Lifecycle API
+
     def start(self, scene: Scene) -> None:
         """Set up the scene and prepare for preloading."""
-        logging.info(f"START: {scene.sys.settings.key}")
+        scene.sys.settings.status = CONST.START
+        logger.info(f"START: {scene.sys.settings.key}")
+        scene.start()
 
     def preload(self, scene: Scene) -> None:
         """Load up any necessary resources for game object creation."""
-        logging.info(f"PRELOAD: {scene.sys.settings.key}")
+        scene.sys.settings.status = CONST.LOADING
+        logger.info(f"PRELOAD: {scene.sys.settings.key}")
+        scene.preload()
 
     def create(self, scene: Scene) -> None:
         """Instantiate instances of game objects."""
-        logging.info(f"CREATE: {scene.sys.settings.key}")
+        scene.sys.settings.status = CONST.CREATING
+        logger.info(f"CREATE: {scene.sys.settings.key}")
+        scene.create()
 
     def update(self, time: float, delta: float) -> None:
         self._is_processing = True
+        self.process_pending()
         for scene in self._queue:
             scene.update(time, delta)
 
@@ -94,6 +124,12 @@ class SceneProcessor:
                     and sys.settings.status >= CONST.LOADING
                     and sys.settings.status <= CONST.SLEEPING):
                 sys.render(renderer)
+        self._is_processing = False
+
+    # Internal API
+
+    def _add_to_queue(self, scene: Scene) -> None:
+        self._queue.append(scene)
 
 
 class SceneManager:
@@ -102,35 +138,50 @@ class SceneManager:
         self.game = game
         self.events = EventEmitter()
 
-        self._is_booted: bool = False
-        self._handler = SceneHandler(self)
-        self._processor = SceneProcessor(self)
-        self.count = self._handler.count
+        self.is_booted: bool = False
+        self.handler = SceneHandler(self)
+        self.processor = SceneProcessor(self)
+        self.count = self.handler.count
 
-        self.game.events.once(events.READY, self.boot)
+        self.game.events.on(BOOT, self._boot)
+        self.game.events.on(READY, self._ready)
 
     def boot(self):
-        logger.info("Game instance reports successful boot.")
-        logger.info("SceneManager booting")
+        """Can be overridden to provide on-boot functionality."""
+        pass
+
+    def ready(self):
+        """Can be overridden to provide on-ready functionality."""
+        pass
+
+    def _boot(self):
+        logger.info("BOOT: SceneManager")
+        self.boot()
+        self.events.emit(BOOT, "Scene")
+
+    def _ready(self):
+        logger.info("READY: SceneManager")
+        self.ready()
+        self.events.emit(READY)
 
     # Handler API
 
     def add(self, scene: Scene) -> None:
         logger.info(f"Adding scene: {scene.sys.settings.key}")
-        self._handler.push_scene(scene)
+        self.handler.push_scene(scene)
 
     def remove(self, scene: Scene) -> None:
         logger.info(f"Removing scene: {scene.sys.settings.key}")
-        self._handler.remove_scene(scene)
+        self.handler.remove_scene(scene)
 
     def remove_by_key(self, key: str) -> None:
         logger.info(f"Removing scene with key {key}")
-        self._handler.remove_scene(key)
+        self.handler.remove_scene(key)
 
     # Processor API
 
     def update(self, time: float, delta: float):
-        self._processor.update(time, delta)
+        self.processor.update(time, delta)
 
     def render(self, renderer: Renderer) -> None:
-        self._processor.render(renderer)
+        self.processor.render(renderer)

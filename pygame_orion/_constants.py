@@ -1,5 +1,3 @@
-from pygame.locals import *
-
 import logging
 import os
 import sys
@@ -19,4 +17,11 @@ logger.debug("userdir: %s", USER_STORAGE_DIR)
 DEFAULT_CONFIG_FILE = "orion.cfg"
 USER_CONFIG_PATH = os.path.join(USER_STORAGE_DIR, DEFAULT_CONFIG_FILE)
 logger.debug("user config: %s", USER_CONFIG_PATH)
+
+
+__all__ = [
+    "LIBDIR",
+    "USER_STORAGE_DIR",
+    "USER_CONFIG_PATH"
+]
 

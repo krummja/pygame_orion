@@ -1,4 +1,6 @@
-
+"""A straightforward event emitter,
+based on https://github.com/etissieres/PyEventEmitter
+"""
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
