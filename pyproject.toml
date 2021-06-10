@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "pygame_orion"
+version = "0.1.0"
+description = "A game design framework for Pygame 2"
+authors = ["krummja <crumja@uga.edu>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pygame = "2.0.0"
+pygame-gui = "0.5.7"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
