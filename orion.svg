@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="663.18213"
-   height="384.16501"
-   viewBox="0 0 175.46694 101.64366"
+   width="1456"
+   height="425.09998"
+   viewBox="0 0 385.23334 112.47437"
    version="1.1"
    id="svg5"
    inkscape:version="1.1 (ce6663b3b7, 2021-05-25)"
@@ -24,16 +24,28 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="519.72348"
-     inkscape:cy="257.38687"
+     inkscape:zoom="0.5"
+     inkscape:cx="1114"
+     inkscape:cy="542"
      inkscape:window-width="1920"
      inkscape:window-height="1056"
      inkscape:window-x="1920"
      inkscape:window-y="702"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer2"
-     inkscape:snap-global="false" />
+     inkscape:current-layer="layer5"
+     inkscape:snap-global="true"
+     showguides="false"
+     inkscape:guide-bbox="true"
+     inkscape:snap-page="true"
+     height="390px">
+    <sodipodi:guide
+       position="192.79241,188.74224"
+       orientation="-1,0"
+       id="guide1217"
+       inkscape:label=""
+       inkscape:locked="false"
+       inkscape:color="rgb(0,0,255)" />
+  </sodipodi:namedview>
   <defs
      id="defs2">
     <rect
@@ -125,7 +137,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      style="display:none;opacity:0.280894"
-     transform="translate(-167.98679,-104.82037)">
+     transform="translate(-55.47533,-99.787853)">
     <image
        width="325.71869"
        height="193.22292"
@@ -139,10 +151,24 @@
   </g>
   <g
      inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="Layer 3"
+     transform="translate(112.51147,5.0325174)"
+     style="display:inline">
+    <rect
+       style="fill:#212121;fill-opacity:1;stroke:none;stroke-width:1.90624;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:1.90624, 3.81246"
+       id="rect1270"
+       width="385.23334"
+       height="112.47437"
+       x="-112.51147"
+       y="-5.0325189" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="Layer 2"
      style="display:inline"
-     transform="translate(-167.98679,-104.82037)">
+     transform="translate(-55.47533,-99.787853)">
     <text
        xml:space="preserve"
        transform="matrix(0.21201091,0,0,0.21201091,58.396965,-194.30654)"
@@ -150,7 +176,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:160px;line-height:1.25;font-family:Chilanka;-inkscape-font-specification:'Chilanka, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect17058);fill:#212121;fill-opacity:1;stroke:none"><tspan
          x="46.609375"
          y="653.4694"
-         id="tspan22425">ORION</tspan></text>
+         id="tspan2323">ORION</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.36025901,0,0,0.36025901,284.77517,-295.45978)"
@@ -158,7 +184,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:160px;line-height:1.25;font-family:'Roboto Mono Thin for Powerline';-inkscape-font-specification:'Roboto Mono Thin for Powerline, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect17244);fill:#212121;fill-opacity:1;stroke:none"><tspan
          x="46.609375"
          y="666.80273"
-         id="tspan22427">ORION</tspan></text>
+         id="tspan2325">ORION</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.22440519,0,0,0.22440519,5.9937049,-331.62603)"
@@ -166,7 +192,7 @@
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:160px;line-height:1.25;font-family:'URW Gothic';-inkscape-font-specification:'URW Gothic, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect17376);fill:#212121;fill-opacity:1;stroke:none"><tspan
          x="46.609375"
          y="665.04273"
-         id="tspan22429">ORION</tspan></text>
+         id="tspan2327">ORION</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.36025901,0,0,0.36025901,307.4379,-425.60775)"
@@ -174,7 +200,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:160px;line-height:1.25;font-family:'URW Gothic';-inkscape-font-specification:'URW Gothic, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect17436);fill:#212121;fill-opacity:1;stroke:none"><tspan
          x="46.609375"
          y="665.04273"
-         id="tspan22431">ORION</tspan></text>
+         id="tspan2329">ORION</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.34367596,0,0,0.34367596,-253.76532,-184.5807)"
@@ -182,7 +208,7 @@
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:160px;line-height:1.25;font-family:'URW Gothic';-inkscape-font-specification:'URW Gothic, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect18382);fill:#212121;fill-opacity:1;stroke:none"><tspan
          x="46.609375"
          y="665.04273"
-         id="tspan22433">ORION</tspan></text>
+         id="tspan2331">ORION</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.38905928,0,0,0.38357568,-270.65521,-54.391436)"
@@ -190,22 +216,14 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:160px;line-height:1.25;font-family:Chilanka;-inkscape-font-specification:'Chilanka, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect18494);fill:#212121;fill-opacity:1;stroke:none"><tspan
          x="46.609375"
          y="653.4694"
-         id="tspan22435">ORION</tspan></text>
-    <text
-       xml:space="preserve"
-       transform="matrix(0.34367596,0,0,0.34367596,150.31862,-50.523447)"
-       id="text21378"
-       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:160px;line-height:1.25;font-family:'URW Gothic';-inkscape-font-specification:'URW Gothic, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect21396);fill:#212121;fill-opacity:1;stroke:none"><tspan
-         x="46.609375"
-         y="665.04273"
-         id="tspan22437">ORION</tspan></text>
+         id="tspan2333">ORION</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Lines"
      style="display:inline;opacity:1"
-     transform="translate(-167.98679,-104.82037)">
+     transform="translate(-55.47533,-99.787853)">
     <path
        style="font-variation-settings:normal;fill:none;fill-opacity:1;stroke:#212121;stroke-width:1.87854;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.87854, 3.75708;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
        d="m 18.493625,-90.390765 18.05616,-15.187925"
@@ -696,70 +714,82 @@
        cy="223.05824"
        r="5.2502384"
        transform="rotate(31.082096)" />
-    <circle
-       style="display:inline;fill:#212121;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="circle21380"
-       cx="290.22235"
-       cy="-48.890667"
-       r="3.1401279"
-       transform="rotate(31.082096)" />
-    <circle
-       style="display:inline;fill:#8b0303;fill-opacity:1;stroke:none;stroke-width:4.40707;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="circle21382"
-       cx="279.8187"
-       cy="-25.551039"
-       r="8.37887"
-       transform="rotate(31.082096)" />
-    <ellipse
-       style="display:inline;fill:#21212a;fill-opacity:1;stroke:none;stroke-width:3.30542;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="ellipse21384"
-       cx="309.83282"
-       cy="-45.46209"
-       transform="matrix(0.85531936,0.51810114,-0.51443211,0.85753111,0,0)"
-       rx="3.9185054"
-       ry="3.9273798" />
-    <circle
-       style="display:inline;fill:#21212a;fill-opacity:1;stroke:none;stroke-width:3.83281;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="circle21386"
-       cx="325.85117"
-       cy="-17.900406"
-       transform="rotate(31.082096)"
-       r="3.9484847" />
-    <circle
-       style="display:inline;fill:#21212a;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="circle21388"
-       cx="324.94055"
-       cy="-10.220139"
-       r="2.407711"
-       transform="rotate(31.082096)" />
-    <circle
-       style="display:inline;fill:#21212a;fill-opacity:1;stroke:none;stroke-width:3.02969;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="circle21390"
-       cx="323.11734"
-       cy="-3.4859464"
-       r="3.1928351"
-       transform="rotate(31.082096)" />
-    <circle
-       style="display:inline;fill:#21212a;fill-opacity:1;stroke:none;stroke-width:3.61709;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="circle21392"
-       cx="339.73157"
-       cy="31.268707"
-       r="4.2928462"
-       transform="rotate(31.082096)" />
-    <circle
-       style="display:inline;fill:#292aff;fill-opacity:1;stroke:none;stroke-width:4.41569;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="circle21394"
-       cx="366.63174"
-       cy="0.83257711"
-       r="8.395256"
-       transform="rotate(31.082096)" />
+    <g
+       id="g1233"
+       transform="translate(-0.1757489,0.23737088)">
+      <text
+         xml:space="preserve"
+         transform="matrix(0.34367595,0,0,0.34367595,142.86612,-50.377974)"
+         id="text21378"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:160px;line-height:1.25;font-family:'URW Gothic';-inkscape-font-specification:'URW Gothic, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect21396);display:inline;fill:#f7fbe7;fill-opacity:1;stroke:none"><tspan
+           x="46.609375"
+           y="665.04273"
+           id="tspan2335">ORION</tspan></text>
+      <circle
+         style="display:inline;fill:#f7fbe7;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle21380"
+         cx="283.91492"
+         cy="-44.91861"
+         r="3.1401279"
+         transform="rotate(31.082096)" />
+      <circle
+         style="display:inline;fill:#8b0303;fill-opacity:1;stroke:none;stroke-width:4.40707;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle21382"
+         cx="273.51126"
+         cy="-21.578981"
+         r="8.37887"
+         transform="rotate(31.082096)" />
+      <ellipse
+         style="display:inline;fill:#f7fbe7;fill-opacity:1;stroke:none;stroke-width:3.30542;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="ellipse21384"
+         cx="303.51685"
+         cy="-41.476479"
+         transform="matrix(0.85531936,0.51810114,-0.51443211,0.85753111,0,0)"
+         rx="3.9185054"
+         ry="3.9273798" />
+      <circle
+         style="display:inline;fill:#f7fbe7;fill-opacity:1;stroke:none;stroke-width:3.83281;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle21386"
+         cx="319.54373"
+         cy="-13.928348"
+         transform="rotate(31.082096)"
+         r="3.9484847" />
+      <circle
+         style="display:inline;fill:#f7fbe7;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle21388"
+         cx="318.63312"
+         cy="-6.2480803"
+         r="2.407711"
+         transform="rotate(31.082096)" />
+      <circle
+         style="display:inline;fill:#f7fbe7;fill-opacity:1;stroke:none;stroke-width:3.02969;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle21390"
+         cx="316.80991"
+         cy="0.48611185"
+         r="3.1928351"
+         transform="rotate(31.082096)" />
+      <circle
+         style="display:inline;fill:#f7fbe7;fill-opacity:1;stroke:none;stroke-width:3.61709;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle21392"
+         cx="333.42413"
+         cy="35.240765"
+         r="4.2928462"
+         transform="rotate(31.082096)" />
+      <circle
+         style="display:inline;fill:#292aff;fill-opacity:1;stroke:none;stroke-width:4.41569;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle21394"
+         cx="360.32431"
+         cy="4.8046355"
+         r="8.395256"
+         transform="rotate(31.082096)" />
+    </g>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Stars"
      style="display:none"
-     transform="translate(-167.98679,-104.82037)">
+     transform="translate(-55.47533,-99.787853)">
     <circle
        style="display:inline;opacity:1;fill:#21212a;fill-opacity:1;stroke:none;stroke-width:0.990977;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path916"
