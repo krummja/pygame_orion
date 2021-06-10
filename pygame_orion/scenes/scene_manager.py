@@ -123,13 +123,13 @@ class SceneProcessor:
         for scene in self._queue:
             scene.update(time, delta)
 
-    def render(self, renderer: Renderer) -> None:
+    def render(self, renderer: Renderer, time: float, delta: float) -> None:
         for scene in self._queue:
             sys: SceneSystems = scene.sys
             if (sys.settings.visible
                     and sys.settings.status >= CONST.LOADING
                     and sys.settings.status <= CONST.SLEEPING):
-                sys.render(renderer)
+                sys.render(renderer, time, delta)
         self._is_processing = False
 
     # Internal API

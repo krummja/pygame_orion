@@ -22,6 +22,7 @@ class SceneConfig:
         self.key: str = config.get("key")
         self.active: bool = config.get("active", True)
         self.visible: bool = config.get("visible", True)
+        self.renderer = config.get("renderer")  # TODO pass in a default renderer?
         self.cameras = config.get("cameras")
         self.map = config.get("map", {})
         self.physics = config.get("physics", {})
@@ -41,6 +42,7 @@ class SceneSystems:
         self.settings = settings
         self.events = EventEmitter()
         self.input = self.settings.input["handler"]
+        self.renderer = self.settings.renderer
 
     @property
     def game(self):
@@ -50,8 +52,8 @@ class SceneSystems:
     def game_events(self):
         return self.game.events
 
-    def render(self, renderer: Renderer) -> None:
-        renderer.render(self.scene)
+    def render(self, renderer: Renderer, time: float, delta: float) -> None:
+        renderer.render(self.scene, time, delta)
 
 
 class Scene:

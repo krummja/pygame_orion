@@ -189,7 +189,7 @@ class Game:
         emitter.emit(PRE_RENDER, renderer, time, delta)
 
         # The main render loop. Iterates all Scenes and all Cameras in those scenes, rendering to the render instance.
-        self.scene.render(renderer)
+        # self.scene.render(renderer, time, delta)
 
         # Post-Render call. Tidies up loose ends, takes snapshots, etc.
         renderer.post_render()

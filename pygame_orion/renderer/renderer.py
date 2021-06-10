@@ -1,11 +1,13 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 import logging
 
+import pygame as pg
 from pygame_orion.core.emitter import EventEmitter
 from pygame_orion._events import *
 
 if TYPE_CHECKING:
+    from pygame_orion.renderer.base_render_system import BaseRenderSystem
     from pygame_orion.core.game import Game
     from pygame_orion.scenes.scene import Scene
 
@@ -38,10 +40,10 @@ class Renderer:
         self.events.emit(READY)
 
     def pre_render(self):
-        pass
+        self.game.display.surface.fill((0, 0, 64))
 
-    def render(self, scene: Scene) -> None:
+    def render(self, scene: Scene, time: float, delta: float) -> None:
         pass
 
     def post_render(self):
-        pass
+        pg.display.flip()

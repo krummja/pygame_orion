@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 import logging
 
 from pygame_orion.core.emitter import EventEmitter
@@ -20,6 +20,7 @@ class ECSManager:
         self.game = game
         self.events = EventEmitter()
         self.engine = ecstremity.Engine(client = game)
+        self.world: Optional[ecstremity.World] = None
         self.components = self.engine.components
         self.prefabs = self.engine.prefabs
 
@@ -40,4 +41,5 @@ class ECSManager:
     def _ready(self):
         logger.info("READY: ECSManager")
         self.ready()
+        self.world = self.engine.create_world()
         self.events.emit(READY)
