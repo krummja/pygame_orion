@@ -2,7 +2,16 @@
 based on https://github.com/etissieres/PyEventEmitter
 """
 from __future__ import annotations
-from typing import TYPE_CHECKING
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    Dict,
+    Hashable,
+    List,
+    Optional,
+    Union,
+)
 
 if TYPE_CHECKING:
     from pygame_orion.core.game import Game
@@ -10,19 +19,22 @@ if TYPE_CHECKING:
 
 class ListenerWrapper:
 
-    def __init__(self, listener, is_once=False):
+    def __init__(self, listener: Callable[..., Optional[Any]], is_once: bool = False) -> None:
         self.listener = listener
         self.is_once = is_once
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self, *args: List[Any], **kwargs: Dict[Hashable, Any]) -> None:
         self.listener(*args, **kwargs)
 
-    def __eq__(self, other):
+    def __eq__(self, other: Union[ListenerWrapper, Callable[..., Optional[Any]]]) -> bool:
         if isinstance(other, ListenerWrapper):
             return other.listener == self.listener
-        if isinstance(other, types.FunctionType):
+        if isinstance(other, Callable):
             return other == self.listener
         return False
+
+    def __repr__(self):
+        return str(self.listener)
 
 
 class EventEmitter:
