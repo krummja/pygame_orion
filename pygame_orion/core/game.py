@@ -16,7 +16,6 @@ class BootManager:
     def __init__(self, game: Game) -> None:
         self.game = game
         self.boot_status = {}
-        self.game.events.on(READY, self.game.start)
 
         for key, plugin in OrionPluginRegistry.plugins().items():
             if key == "Game" or key == "OrionPlugin":
@@ -30,6 +29,8 @@ class BootManager:
             plugin = OrionPluginRegistry.get_plugin(key)
             plugin.events.on(BOOT, self._set_ready)
 
+        self.game.events.on(READY, self.game.start)
+
     def boot_plugin(self, plugin: Type[OrionPlugin]) -> OrionPlugin:
         _plugin = plugin()
         OrionPluginRegistry.add_booted(_plugin)
@@ -42,6 +43,18 @@ class BootManager:
         self.boot_status[key] = True
         if all([value is True for value in self.boot_status.values()]):
             self.game.ready()
+
+
+class NoncePlugin(OrionPlugin):
+
+    def boot(self):
+        print("BOOT!")
+
+    def ready(self):
+        print("READY!")
+
+    def start(self):
+        print("START!")
 
 
 class Game(OrionPlugin):
@@ -73,6 +86,7 @@ class Game(OrionPlugin):
         self._remove_display = False
 
     def boot(self):
+        OrionPluginRegistry.add_booted(self)
         logger.info("BOOT")
         self._is_booted = True
         self.events.emit(BOOT)
@@ -98,7 +112,6 @@ class Game(OrionPlugin):
         emitter.emit(PRE_STEP, time, delta)
         emitter.emit(STEP, time, delta)
         emitter.emit(POST_STEP, time, delta)
-
         emitter.emit(PRE_RENDER, time, delta)
         emitter.emit(POST_RENDER, time, delta)
 
@@ -109,3 +122,8 @@ class Game(OrionPlugin):
 
     def teardown(self):
         pass
+
+
+if __name__ == '__main__':
+    game = Game()
+    game.boot()

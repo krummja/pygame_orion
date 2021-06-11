@@ -39,16 +39,16 @@ class OrionPlugin(metaclass=OrionPluginRegistry):
     """
 
     def _boot(self):
-        self.events.emit(BOOT, str(self.__class__.__name__))
         self.boot()
+        self.events.emit(BOOT, str(self.__class__.__name__))
 
     def _ready(self):
-        self.events.emit(READY, str(self.__class__.__name__))
         self.ready()
+        self.events.emit(READY, str(self.__class__.__name__))
 
     def _start(self):
-        self.events.emit(START, str(self.__class__.__name__))
         self.start()
+        self.events.emit(START, str(self.__class__.__name__))
 
     def boot(self):
         raise NotImplementedError
