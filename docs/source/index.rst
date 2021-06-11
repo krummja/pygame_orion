@@ -12,13 +12,6 @@ Welcome to pygame_orion's documentation!
 
    intro
    contributing
-   core
-   data
-   ecs
-   gui
-   input
-   renderer
-   scenes
 
 Indices and tables
 ==================
