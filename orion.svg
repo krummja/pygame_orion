@@ -24,9 +24,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:zoom="0.5"
-     inkscape:cx="1114"
-     inkscape:cy="542"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="680.76705"
+     inkscape:cy="206.12163"
      inkscape:window-width="1920"
      inkscape:window-height="1056"
      inkscape:window-x="1920"
@@ -176,7 +176,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:160px;line-height:1.25;font-family:Chilanka;-inkscape-font-specification:'Chilanka, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect17058);fill:#212121;fill-opacity:1;stroke:none"><tspan
          x="46.609375"
          y="653.4694"
-         id="tspan2323">ORION</tspan></text>
+         id="tspan1232">ORION</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.36025901,0,0,0.36025901,284.77517,-295.45978)"
@@ -184,7 +184,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:160px;line-height:1.25;font-family:'Roboto Mono Thin for Powerline';-inkscape-font-specification:'Roboto Mono Thin for Powerline, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect17244);fill:#212121;fill-opacity:1;stroke:none"><tspan
          x="46.609375"
          y="666.80273"
-         id="tspan2325">ORION</tspan></text>
+         id="tspan1234">ORION</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.22440519,0,0,0.22440519,5.9937049,-331.62603)"
@@ -192,7 +192,7 @@
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:160px;line-height:1.25;font-family:'URW Gothic';-inkscape-font-specification:'URW Gothic, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect17376);fill:#212121;fill-opacity:1;stroke:none"><tspan
          x="46.609375"
          y="665.04273"
-         id="tspan2327">ORION</tspan></text>
+         id="tspan1236">ORION</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.36025901,0,0,0.36025901,307.4379,-425.60775)"
@@ -200,7 +200,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:160px;line-height:1.25;font-family:'URW Gothic';-inkscape-font-specification:'URW Gothic, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect17436);fill:#212121;fill-opacity:1;stroke:none"><tspan
          x="46.609375"
          y="665.04273"
-         id="tspan2329">ORION</tspan></text>
+         id="tspan1238">ORION</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.34367596,0,0,0.34367596,-253.76532,-184.5807)"
@@ -208,7 +208,7 @@
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:160px;line-height:1.25;font-family:'URW Gothic';-inkscape-font-specification:'URW Gothic, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect18382);fill:#212121;fill-opacity:1;stroke:none"><tspan
          x="46.609375"
          y="665.04273"
-         id="tspan2331">ORION</tspan></text>
+         id="tspan1240">ORION</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.38905928,0,0,0.38357568,-270.65521,-54.391436)"
@@ -216,7 +216,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:160px;line-height:1.25;font-family:Chilanka;-inkscape-font-specification:'Chilanka, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect18494);fill:#212121;fill-opacity:1;stroke:none"><tspan
          x="46.609375"
          y="653.4694"
-         id="tspan2333">ORION</tspan></text>
+         id="tspan1242">ORION</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -717,14 +717,27 @@
     <g
        id="g1233"
        transform="translate(-0.1757489,0.23737088)">
-      <text
-         xml:space="preserve"
+      <g
+         aria-label="ORION"
          transform="matrix(0.34367595,0,0,0.34367595,142.86612,-50.377974)"
          id="text21378"
-         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:160px;line-height:1.25;font-family:'URW Gothic';-inkscape-font-specification:'URW Gothic, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect21396);display:inline;fill:#f7fbe7;fill-opacity:1;stroke:none"><tspan
-           x="46.609375"
-           y="665.04273"
-           id="tspan2335">ORION</tspan></text>
+         style="font-weight:600;font-size:160px;line-height:1.25;font-family:'URW Gothic';-inkscape-font-specification:'URW Gothic, Semi-Bold';white-space:pre;shape-inside:url(#rect21396);display:inline;fill:#f7fbe7">
+        <path
+           d="m 113.80938,544.72273 c -35.200005,0 -62.400005,26.72 -62.400005,61.28 0,34.24 27.52,61.12 62.239995,61.12 34.4,0 60.96,-26.72 60.96,-61.12 0,-34.08 -27.04,-61.28 -60.79999,-61.28 z m -0.32001,21.12 c 21.92,0 39.04001,17.6 39.04001,40.32 0,22.88 -16.64001,39.84 -39.04001,39.84 -22.399995,0 -39.999995,-17.6 -39.999995,-40 0,-22.88 17.28,-40.16 39.999995,-40.16 z"
+           id="path1042" />
+        <path
+           d="m 191.88909,665.04273 h 21.92 v -45.28 l 31.04,45.28 h 27.04 l -32,-43.68 c 9.12,-2.24 13.6,-4.32 18.72,-8.64 8.16,-6.88 12.16,-16.16 12.16,-28 0,-12.16 -4.32,-22.24 -12.48,-29.12 -7.68,-6.56 -16.16,-8.8 -32.32,-8.8 h -34.08 z m 21.92,-61.76 v -35.52 h 9.76 c 10.24,0 15.84,1.12 19.36,4.16 3.84,3.04 5.76,7.68 5.76,13.44 0,12.48 -7.2,17.92 -24.16,17.92 z"
+           id="path1044" />
+        <path
+           d="m 286.92907,665.04273 h 21.92 v -118.24 h -21.92 z"
+           id="path1046" />
+        <path
+           d="m 388.04888,544.72273 c -35.2,0 -62.4,26.72 -62.4,61.28 0,34.24 27.52,61.12 62.24,61.12 34.4,0 60.96,-26.72 60.96,-61.12 0,-34.08 -27.04,-61.28 -60.8,-61.28 z m -0.32,21.12 c 21.92,0 39.04,17.6 39.04,40.32 0,22.88 -16.64,39.84 -39.04,39.84 -22.4,0 -40,-17.6 -40,-40 0,-22.88 17.28,-40.16 40,-40.16 z"
+           id="path1048" />
+        <path
+           d="m 466.1286,665.04273 h 21.92 v -85.92 l 49.44,85.92 h 24.48 v -118.24 h -21.92 v 86.08 l -48.96,-86.08 h -24.96 z"
+           id="path1050" />
+      </g>
       <circle
          style="display:inline;fill:#f7fbe7;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="circle21380"

@@ -11,20 +11,20 @@ from pygame_orion.core.time_step import TimeStep
 logger = logging.getLogger(__file__)
 
 
-class BootManager:
+class OrionManager:
 
     def __init__(self, game: Game) -> None:
         self.game = game
         self.boot_status = {}
 
         for key, plugin in OrionPluginRegistry.plugins().items():
-            if key == "Game" or key == "OrionPlugin":
+            if key == "Game" or key == self.game.__class__.__name__ or key == "OrionPlugin":
                 continue
             self.boot_status[key] = False
             self.boot_plugin(plugin)
 
         for key in OrionPluginRegistry.plugins().keys():
-            if key == "Game" or key == "OrionPlugin":
+            if key == "Game" or key == self.game.__class__.__name__ or key == "OrionPlugin":
                 continue
             plugin = OrionPluginRegistry.get_plugin(key)
             plugin.events.on(BOOT, self._set_ready)
@@ -47,6 +47,9 @@ class BootManager:
 
 class NoncePlugin(OrionPlugin):
 
+    def __init__(self):
+        self.game = OrionPluginRegistry.get_plugin("TestGame")
+
     def boot(self):
         print("BOOT!")
 
@@ -55,6 +58,10 @@ class NoncePlugin(OrionPlugin):
 
     def start(self):
         print("START!")
+        self.game.events.on(PRE_RENDER, self.run)
+
+    def run(self, time: float, delta: float):
+        print("Running!")
 
 
 class Game(OrionPlugin):
@@ -77,7 +84,6 @@ class Game(OrionPlugin):
             plugin = OrionPluginRegistry.get_plugin("MyPlugin")
         """
         self.config = OrionConfig(options, config_path)
-        self.boot_manager = BootManager(self)
         self.loop = TimeStep(self)
 
         self._is_booted = False
@@ -124,6 +130,10 @@ class Game(OrionPlugin):
         pass
 
 
+class TestGame(Game):
+    pass
+
+
 if __name__ == '__main__':
-    game = Game()
-    game.boot()
+    manager = OrionManager(TestGame())
+    manager.game.boot()
